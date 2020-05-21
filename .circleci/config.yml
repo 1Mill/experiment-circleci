@@ -5,8 +5,4 @@ jobs:
       - image: circleci/node:4.8.2
     steps:
       - checkout
-      - run: echo "Hello world! Something differen!"
-workflows:
-  all-jobs-passed:
-    jobs:
-      - build
+      - run: echo "Hello world!"
