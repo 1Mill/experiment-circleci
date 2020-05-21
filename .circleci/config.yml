@@ -6,20 +6,23 @@ version: 2.1
 
 # JOBS - Common functionality between workflows, collection of commands / steps
 jobs:
-  build:
+  deploy:
     docker:
       - image: circleci/node:14
-    environment:
-      EXAMPLE_STATEMENT: HELLO WORLD STATEMENT!
-      NODE_ENV: production
     steps:
       - checkout
-      - run: echo ${EXAMPLE_STATEMENT}
+      - run: echo 'Updaing PRODUCTION environment'
+
+  release:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - run: echo 'Pushing code out into the world!'
+
   test:
     docker:
       - image: circleci/node:14
-    environment:
-      NODE_ENV: development
     steps:
       - checkout
       - run: npm install
@@ -27,9 +30,12 @@ jobs:
 
 # WORKFLOWS
 workflows:
-  ready:
+  release:
     jobs:
-      - build:
+      - deploy:
+          requires:
+            - release
+      - release:
           requires:
             - test
       - test
