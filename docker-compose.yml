@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  node:
+    build: .
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8080
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/app
