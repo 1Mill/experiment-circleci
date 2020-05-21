@@ -15,6 +15,7 @@ jobs:
     environment:
       NODE_ENV: development
     steps:
+      - checkout
       - run: npm run test
 
 workflows:
