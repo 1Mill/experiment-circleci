@@ -30,7 +30,7 @@ jobs:
 
 # WORKFLOWS
 workflows:
-  update-production:
+  production:
     jobs:
       - deploy:
           requires:
@@ -39,3 +39,12 @@ workflows:
           requires:
             - test
       - test
+  # staging:
+  #   jobs:
+  #     - deploy:
+  #         requires:
+  #           - release
+  #     - release:
+  #         requires:
+  #           - test
+  #     - test
