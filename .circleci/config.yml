@@ -30,7 +30,7 @@ jobs:
 
 # WORKFLOWS
 workflows:
-  release:
+  update-production:
     jobs:
       - deploy:
           requires:
