@@ -6,6 +6,7 @@ jobs:
       - image: circleci/node:14
     environment:
       EXAMPLE_STATEMENT: HELLO WORLD STATEMENT!
+      NODE_ENV: production
     steps:
       - checkout
       - run: echo ${EXAMPLE_STATEMENT}
@@ -16,6 +17,7 @@ jobs:
       NODE_ENV: development
     steps:
       - checkout
+      - run: npm install
       - run: npm run test
 
 workflows:
