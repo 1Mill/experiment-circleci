@@ -15,10 +15,11 @@ jobs:
 
   release:
     docker:
-      - image: circleci/node:14
+      - image: ubuntu:18.04
     steps:
       - checkout
-      - run: echo 'Pushing code out into the world!'
+      - run: bash entrypoint.sh
+    working_directory: ~/release
 
   test:
     docker:
