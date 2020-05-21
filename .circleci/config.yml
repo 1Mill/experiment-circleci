@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
       - run: bash entrypoint.sh
-    working_directory: ~/release
+    working_directory: ~/${CIRCLE_WORKING_DIRECTORY}/release
 
   test:
     docker:
@@ -28,7 +28,7 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
-    working_directory: ~/src
+    working_directory: ~/${CIRCLE_WORKING_DIRECTORY}/src
 
 # WORKFLOWS
 workflows:
