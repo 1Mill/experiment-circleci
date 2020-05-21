@@ -1,5 +1,10 @@
 version: 2.1
 
+# ORBS - Common functionality between projects
+
+# COMMANDS - Common functionality between jobs
+
+# JOBS - Common functionality between workflows, collection of commands / steps
 jobs:
   build:
     docker:
@@ -20,6 +25,7 @@ jobs:
       - run: npm install
       - run: npm run test
 
+# WORKFLOWS
 workflows:
   ready:
     jobs:
