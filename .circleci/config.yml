@@ -1,8 +1,11 @@
 version: 2.1
+
 jobs:
   build:
     docker:
-      - image: circleci/node:4.8.2
+      - image: circleci/node:14
+    environment:
+      EXAMPLE_STATEMENT: "HELLO WORLD STATEMENT!"
     steps:
       - checkout
-      - run: echo "Hello world!"
+      - run: echo ${EXAMPLE_STATEMENT}
