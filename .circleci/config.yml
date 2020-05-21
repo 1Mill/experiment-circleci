@@ -28,6 +28,7 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run test
+    working_directory: ~/src
 
 # WORKFLOWS
 workflows:
