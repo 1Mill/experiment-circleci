@@ -5,7 +5,22 @@ jobs:
     docker:
       - image: circleci/node:14
     environment:
-      EXAMPLE_STATEMENT: "HELLO WORLD STATEMENT!"
+      EXAMPLE_STATEMENT: HELLO WORLD STATEMENT!
     steps:
       - checkout
       - run: echo ${EXAMPLE_STATEMENT}
+  test:
+    docker:
+      - image: circleci/node:14
+    environment:
+      NODE_ENV: development
+    steps:
+      - run: npm run test
+
+workflows:
+  ready:
+    jobs:
+      - build:
+          requires:
+            - test
+      - test
