@@ -17,18 +17,18 @@ jobs:
     docker:
       - image: ubuntu:18.04
     steps:
-      - checkout
+      - checkout:
+          path: ~/release
       - run: bash entrypoint.sh
-    working_directory: ~/$CIRCLE_WORKING_DIRECTORY/release
 
   test:
     docker:
       - image: circleci/node:14
     steps:
-      - checkout
+      - checkout:
+          path: ~/src
       - run: npm install
       - run: npm run test
-    working_directory: ~/$CIRCLE_WORKING_DIRECTORY/src
 
 # WORKFLOWS
 workflows:
