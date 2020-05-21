@@ -9,6 +9,7 @@ COPY . .
 
 ENV \
   HOST=0.0.0.0 \
+  NODE_ENV=production \
   PORT=8080
 
-CMD [ "npm", "start:dev" ]
+CMD [ "npm", "run", "start" ]
