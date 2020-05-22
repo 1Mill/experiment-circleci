@@ -6,14 +6,25 @@ version: 2.1
 
 # JOBS - Common functionality between workflows, collection of commands / steps
 jobs:
-  deploy:
+  deploy-to-production:
     docker:
       - image: circleci/node:14
+    environment:
+      ENVIRONMENT: PRODUCTION
     steps:
       - checkout
-      - run: echo 'Updaing PRODUCTION environment'
+      - run: echo 'Updaing ${ENVIRONMENT} environment'
 
-  release:
+  deploy-to-staging:
+    docker:
+      - image: circleci/node:14
+    environment:
+      ENVIRONMENT: STAGING
+    steps:
+      - checkout
+      - run: echo 'Updaing ${ENVIRONMENT} environment'
+
+  release-version:
     docker:
       - image: ubuntu:18.04
     steps:
@@ -30,21 +41,28 @@ jobs:
 
 # WORKFLOWS
 workflows:
-  production:
+  build-and-deploy:
     jobs:
-      - deploy:
-          requires:
-            - release
-      - release:
+      - deploy-to-production:
+          filters:
+            branches:
+              only: master
           requires:
             - test
+
+      - deploy-to-staging:
+          filters:
+            branches:
+              only: development
+          requires:
+              - release-version
+              - test
+
+      - release-version:
+          filters:
+            branches:
+              only: development
+          requires:
+            - test
+
       - test
-  # staging:
-  #   jobs:
-  #     - deploy:
-  #         requires:
-  #           - release
-  #     - release:
-  #         requires:
-  #           - test
-  #     - test
