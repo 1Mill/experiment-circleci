@@ -13,7 +13,7 @@ jobs:
       ENVIRONMENT: PRODUCTION
     steps:
       - checkout
-      - run: echo 'Updaing ${ENVIRONMENT} environment'
+      - run: echo Updaing ${ENVIRONMENT} environment
 
   deploy-to-staging:
     docker:
@@ -22,7 +22,7 @@ jobs:
       ENVIRONMENT: STAGING
     steps:
       - checkout
-      - run: echo 'Updaing ${ENVIRONMENT} environment'
+      - run: echo Updaing ${ENVIRONMENT} environment
 
   release-version:
     docker:
