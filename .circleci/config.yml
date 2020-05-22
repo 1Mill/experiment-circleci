@@ -41,7 +41,7 @@ jobs:
 
 # WORKFLOWS
 workflows:
-  build-and-deploy:
+  build:
     jobs:
       - deploy-to-production:
           filters:
